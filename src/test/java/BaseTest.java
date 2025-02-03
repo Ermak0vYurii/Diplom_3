@@ -5,12 +5,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 
-import static pageobject.MainPage.URL;
-
 public class BaseTest {
 
     protected WebDriver driver;
     String browser = "chrome";
+    public static final String URL = "https://stellarburgers.nomoreparties.site/";
 
     @Before
     public void prepare() {
