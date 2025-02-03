@@ -7,10 +7,10 @@ public class MainPage {
 
     private WebDriver driver;
 
-    public static final String URL = "https://stellarburgers.nomoreparties.site/";
-
     //кнопка Личный кабинет
     private final By personalAccountButton = By.className("AppHeader_header__link__3D_hX");
+    //кнопка Войти в аккаунт
+    private final By loginButton = By.xpath(".//button[text()='Войти в аккаунт']");
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
