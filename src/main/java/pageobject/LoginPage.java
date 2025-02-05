@@ -31,7 +31,7 @@ public class LoginPage {
         driver.findElement(registrationButton).click();
     }
 
-    @Step("Ожидание загрузки страницы")
+    @Step("Ожидание загрузки страницы авторизации")
     public void waitOfVisibilityEnterButton() {
         new WebDriverWait(driver, 3)
                 .until(ExpectedConditions.visibilityOfElementLocated(enterButton));

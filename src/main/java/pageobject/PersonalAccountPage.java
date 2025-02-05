@@ -26,13 +26,13 @@ public class PersonalAccountPage {
         driver.findElement(exitButton).click();
     }
 
-    @Step("Ожидание загрузки страницы")
+    @Step("Ожидание загрузки страницы личного кабинета")
     public void waitOfVisibilityExitButton() {
         new WebDriverWait(driver, 3)
                 .until(ExpectedConditions.visibilityOfElementLocated(exitButton));
     }
 
-    @Step("Проверка видимости кнопки Войти")
+    @Step("Проверка видимости кнопки Выйти")
     public boolean exitButtonIsDisplayed() {
         return driver.findElement(exitButton).isDisplayed();
     }
