@@ -8,7 +8,6 @@ public class RecoverPasswordPage {
 
     private WebDriver driver;
 
-    //кнопка Войти
     private final By enterButton = By.xpath(".//a[text()='Войти']");
 
     public RecoverPasswordPage(WebDriver driver) {
