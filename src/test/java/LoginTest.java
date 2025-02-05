@@ -6,6 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import pageobject.LoginPage;
 import pageobject.MainPage;
+import pageobject.RecoverPasswordPage;
 import pageobject.RegisterPage;
 import pojo.User;
 
@@ -16,6 +17,7 @@ public class LoginTest extends BaseTest {
     MainPage objMainPage;
     LoginPage objLoginPage;
     RegisterPage objRegisterPage;
+    RecoverPasswordPage objRecoverPasswordPage;
     User user;
     protected UserClient client;
     protected String token;
@@ -25,6 +27,7 @@ public class LoginTest extends BaseTest {
         objMainPage = new MainPage(driver);
         objLoginPage = new LoginPage(driver);
         objRegisterPage = new RegisterPage(driver);
+        objRecoverPasswordPage = new RecoverPasswordPage(driver);
         client = new UserClient();
         user = new User("user-test@ya.ru", "password", "Ivan");
         Response response = client.createUser(user);
@@ -62,6 +65,17 @@ public class LoginTest extends BaseTest {
         objMainPage.clickLoginButton();
         objLoginPage.clickRegisterButton();
         objRegisterPage.clickEnterButton();
+        objLoginPage.loginUser(user.getEmail(), user.getPassword());
+        objMainPage.waitLoadMainPage();
+        assertEquals(URL,driver.getCurrentUrl());
+    }
+
+    @Test
+    @DisplayName("Вход через кнопку в форме восстановления пароля")
+    public void loginButtonOnRecoveryPasswordPageTest() {
+        objMainPage.clickLoginButton();
+        objLoginPage.clickRecoverPasswordButton();
+        objRecoverPasswordPage.clickEnterButton();
         objLoginPage.loginUser(user.getEmail(), user.getPassword());
         objMainPage.waitLoadMainPage();
         assertEquals(URL,driver.getCurrentUrl());
