@@ -14,7 +14,7 @@ public class BaseTest {
     @Before
     public void prepare() {
         if (browser.equalsIgnoreCase("yandex")) {
-            System.setProperty("webdriver.chrome.driver", "C:/WebDriver/bin/chromedriver.exe");
+            System.setProperty("webdriver.chrome.driver", "C:/WebDriver/bin/yandex/chromedriver.exe");
             ChromeOptions options = new ChromeOptions();
             options.setBinary("C:\\Users\\pocht\\AppData\\Local\\Yandex\\YandexBrowser\\Application\\browser.exe");
             driver = new ChromeDriver(options);
@@ -28,7 +28,7 @@ public class BaseTest {
     }
 
     @After
-    public void cleanUp() {
+    public void tearDown() {
         driver.quit();
     }
 }
