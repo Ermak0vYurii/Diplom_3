@@ -46,7 +46,7 @@ public class RegisterUserTest extends BaseTest {
         objLoginPage.waitOfVisibilityEnterButton();
         assertTrue(objLoginPage.enterButtonIsDisplayed());
         Response response = client.loginUser(user);
-        token = response.then().extract().path("accessToken");//assert
+        token = response.then().extract().path("accessToken");
     }
 
     @Test
