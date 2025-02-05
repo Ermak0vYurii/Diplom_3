@@ -6,8 +6,6 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
-
 public class LoginPage {
 
     private final WebDriver driver;
@@ -16,6 +14,13 @@ public class LoginPage {
     private final By enterButton = By.xpath(".//button[text()='Войти']");
     //гиперссылка Зарегистрироваться
     private final By registrationButton = By.xpath(".//a[text()='Зарегистрироваться']");
+    //поле Email
+    private final By emailField = By.xpath(".//input[@name='name']");
+    //поле Пароль
+    private final By passwordField = By.xpath(".//input[@name='Пароль']");
+    //гиперссылка Восстановить пароль
+    private final By recoverPasswordButton = By.xpath(".//a[text()='Восстановить пароль']");
+
 
 
 
@@ -28,7 +33,7 @@ public class LoginPage {
         driver.findElement(registrationButton).click();
     }
 
-    @Step("Ожидание видимости кнопки Войти")
+    @Step("Ожидание загрузки страницы")
     public void waitOfVisibilityEnterButton() {
         new WebDriverWait(driver, 3)
                 .until(ExpectedConditions.visibilityOfElementLocated(enterButton));
@@ -37,6 +42,28 @@ public class LoginPage {
     @Step("Проверка видимости кнопки Войти")
     public boolean enterButtonIsDisplayed() {
        return driver.findElement(enterButton).isDisplayed();
+    }
+
+    @Step("Нажатие на кнопку Войти")
+    public void clickEnterButton() {
+        driver.findElement(enterButton).click();
+    }
+
+    @Step("Заполнение поля Email")
+    public void setEmailField(String email) {
+        driver.findElement(emailField).sendKeys(email);
+    }
+
+    @Step("Заполнение поля Пароль")
+    public void setPasswordField(String password) {
+        driver.findElement(passwordField).sendKeys(password);
+    }
+
+    @Step("Заполнение формы Вход")
+    public void loginUser(String email, String password) {
+        setEmailField(email);
+        setPasswordField(password);
+        clickEnterButton();
     }
 
 }

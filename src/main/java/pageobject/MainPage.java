@@ -3,6 +3,8 @@ package pageobject;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class MainPage {
 
@@ -12,6 +14,8 @@ public class MainPage {
     private final By personalAccountButton = By.className("AppHeader_header__link__3D_hX");
     //кнопка Войти в аккаунт
     private final By loginButton = By.xpath(".//button[text()='Войти в аккаунт']");
+    //кнопка Оформить заказ
+    private final By createOrderButton = By.xpath(".//button[text()='Оформить заказ']");
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
@@ -20,6 +24,12 @@ public class MainPage {
     @Step("Нажатие на кнопку Войти в аккаунт")
     public void clickLoginButton() {
         driver.findElement(loginButton).click();
+    }
+
+    @Step("Ожидание загрузки главной страницы")
+    public void waitLoadMainPage() {
+        new WebDriverWait(driver, 3).
+                until(ExpectedConditions.visibilityOfElementLocated(createOrderButton));
     }
 
 }
