@@ -22,8 +22,6 @@ public class LoginPage {
     private final By recoverPasswordButton = By.xpath(".//a[text()='Восстановить пароль']");
 
 
-
-
     public LoginPage(WebDriver driver) {
         this.driver = driver;
     }
