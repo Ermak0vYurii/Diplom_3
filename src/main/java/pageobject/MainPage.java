@@ -11,7 +11,7 @@ public class MainPage {
     private WebDriver driver;
 
     //кнопка Личный кабинет
-    private final By personalAccountButton = By.className("AppHeader_header__link__3D_hX");
+    private final By personalAccountButton = By.xpath(".//p[text()='Личный Кабинет']");
     //кнопка Войти в аккаунт
     private final By loginButton = By.xpath(".//button[text()='Войти в аккаунт']");
     //кнопка Оформить заказ
@@ -24,6 +24,11 @@ public class MainPage {
     @Step("Нажатие на кнопку Войти в аккаунт")
     public void clickLoginButton() {
         driver.findElement(loginButton).click();
+    }
+
+    @Step("Нажатие на кнопку Личный кабинет")
+    public void clickPersonalAccountButton() {
+        driver.findElement(personalAccountButton).click();
     }
 
     @Step("Ожидание загрузки главной страницы")
