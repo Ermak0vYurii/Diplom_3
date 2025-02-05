@@ -55,4 +55,15 @@ public class LoginTest extends BaseTest {
         objMainPage.waitLoadMainPage();
         assertEquals(URL,driver.getCurrentUrl());
     }
+
+    @Test
+    @DisplayName("Вход через кнопку в форме регистрации")
+    public void loginEnterButtonOnRegisterPageTest() {
+        objMainPage.clickLoginButton();
+        objLoginPage.clickRegisterButton();
+        objRegisterPage.clickEnterButton();
+        objLoginPage.loginUser(user.getEmail(), user.getPassword());
+        objMainPage.waitLoadMainPage();
+        assertEquals(URL,driver.getCurrentUrl());
+    }
 }
