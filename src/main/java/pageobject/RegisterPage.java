@@ -18,6 +18,8 @@ public class RegisterPage {
     private final By registerButton = By.xpath(".//button[text()='Зарегистрироваться']");
     //сообщение об ошибке в поле Пароль
     private final By errorMessagePassword = By.xpath(".//p[text()='Некорректный пароль']");
+    //кнопка Войти внизу страницы
+    private final By enterButton = By.xpath(".//a[text()='Войти']");
 
     public RegisterPage(WebDriver driver) {
         this.driver = driver;
@@ -54,6 +56,11 @@ public class RegisterPage {
     @Step("Получение текста сообщения об ошибке в поле Пароль")
     public String getErrorMessagePasswordField(){
        return driver.findElement(errorMessagePassword).getText();
+    }
+
+    @Step("Клик по кнопке Войти на странице регистрации")
+    public void clickEnterButton() {
+        driver.findElement(enterButton).click();
     }
 
 }
