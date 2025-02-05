@@ -9,8 +9,6 @@ import pageobject.MainPage;
 import pageobject.RegisterPage;
 import pojo.User;
 
-import java.util.concurrent.TimeUnit;
-
 import static org.junit.Assert.assertEquals;
 
 public class LoginTest extends BaseTest {
@@ -42,9 +40,17 @@ public class LoginTest extends BaseTest {
 
     @Test
     @DisplayName("Вход по кнопке \"Войти в аккаунт\" на главной странице")
-    public void loginToAccountButtonTest() {
-        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+    public void loginToLoginButtonTest() {
         objMainPage.clickLoginButton();
+        objLoginPage.loginUser(user.getEmail(), user.getPassword());
+        objMainPage.waitLoadMainPage();
+        assertEquals(URL,driver.getCurrentUrl());
+    }
+
+    @Test
+    @DisplayName("Вход через кнопку \"Личный кабинет\"")
+    public void loginToPersonalAccountButtonTest() {
+        objMainPage.clickPersonalAccountButton();
         objLoginPage.loginUser(user.getEmail(), user.getPassword());
         objMainPage.waitLoadMainPage();
         assertEquals(URL,driver.getCurrentUrl());
