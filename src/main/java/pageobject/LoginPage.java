@@ -66,4 +66,9 @@ public class LoginPage {
         clickEnterButton();
     }
 
+    @Step("Нажатие на кнопку \"Восстановить пароль\"")
+    public void clickRecoverPasswordButton() {
+        driver.findElement(recoverPasswordButton).click();
+    }
+
 }
