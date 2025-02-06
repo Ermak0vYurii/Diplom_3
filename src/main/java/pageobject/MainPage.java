@@ -16,14 +16,24 @@ public class MainPage {
     private final By loginButton = By.xpath(".//button[text()='Войти в аккаунт']");
     //кнопка Оформить заказ
     private final By createOrderButton = By.xpath(".//button[text()='Оформить заказ']");
-    //кнопка выбора раздела конструктора Булки
+    //кнопка выбора раздела конструктора 'Булки'
     private final By sectionBunsButton = By.xpath(".//span[text()='Булки']");
-    //кнопка выбора раздела конструктора Соусы
+    //кнопка выбора раздела конструктора 'Соусы'
     private final By sectionSaucesButton = By.xpath(".//span[text()='Соусы']");
-    //кнопка выбора раздела конструктора Начинки
+    //кнопка выбора раздела конструктора 'Начинки'
     private final By sectionFillingsButton = By.xpath(".//span[text()='Начинки']");
-    //список булок в разделе Булки
-    private final By bunsInConstructor = By.xpath(".//a[@href='/ingredient/61c0c5a71d1f82001bdaaa6d']/parent::ul");
+
+    /* Когда искал варианты как проверить осуществился ли переход
+     между разделами в конструкторе то заметил,
+     что у этих элементов в DOMе (если они выбраны)
+     меняется значение атрибута class и решил использовать это в проверке*/
+
+    //элемент для проверки перехода в Булки
+    private final By elementForCheckSwitchToBuns = By.xpath(".//span[text()='Булки']/parent::div");
+    //элемент для проверки перехода в Соусы
+    private final By elementForCheckSwitchToSauces = By.xpath(".//span[text()='Соусы']/parent::div");
+    //элемент для проверки перехода в Начинки
+    private final By elementForCheckSwitchToFillings = By.xpath(".//span[text()='Начинки']/parent::div");
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
@@ -60,9 +70,18 @@ public class MainPage {
         driver.findElement(sectionFillingsButton).click();
     }
 
-    @Step("Виден ли список булок")
-    public boolean listBunsIsDisplayed() {
-        return driver.findElement(bunsInConstructor).isDisplayed();
+    @Step("Получение атрибута class когда выбран раздел \"Булки\"")
+    public String getClassBunsSection() {
+        return driver.findElement(elementForCheckSwitchToBuns).getAttribute("class");
     }
 
+    @Step("Получение атрибута class когда выбран раздел \"Соусы\"")
+    public String getClassSaucesSection() {
+        return driver.findElement(elementForCheckSwitchToSauces).getAttribute("class");
+    }
+
+    @Step("Получение атрибута class когда выбран раздел \"Начинки\"")
+    public String getClassFillingsSection() {
+        return driver.findElement(elementForCheckSwitchToFillings).getAttribute("class");
+    }
 }
