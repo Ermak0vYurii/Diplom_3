@@ -49,11 +49,10 @@ public class GoToPersonalAccountTest extends BaseTest {
         objMainPage.clickPersonalAccountButton();
         objPersonalAccountPage.waitOfVisibilityExitButton();
         assertTrue(objPersonalAccountPage.exitButtonIsDisplayed());
-
     }
 
     @Test
-    @DisplayName("Нажатие на кнопку Личный кабинет, если пользователь неавторизован")
+    @DisplayName("Нажатие на кнопку Личный кабинет, если пользователь не авторизован")
     public void GoToPersonalAccountWithoutAuthUserTest() {
         objMainPage.clickPersonalAccountButton();
         objLoginPage.waitOfVisibilityEnterButton();
