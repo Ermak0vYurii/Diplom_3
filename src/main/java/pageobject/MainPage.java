@@ -55,17 +55,17 @@ public class MainPage {
                 until(ExpectedConditions.visibilityOfElementLocated(createOrderButton));
     }
 
-    @Step("Нажатие на раздел конструктора Булки")
+    @Step("Нажатие на раздел конструктора \"Булки\"")
     public void clickBunsButton() {
         driver.findElement(sectionBunsButton).click();
     }
 
-    @Step("Нажатие на раздел конструктора Соусы")
+    @Step("Нажатие на раздел конструктора \"Соусы\"")
     public void clickSaucesButton() {
         driver.findElement(sectionSaucesButton).click();
     }
 
-    @Step("Нажатие на раздел конструктора Булки")
+    @Step("Нажатие на раздел конструктора \"Начинки\"")
     public void clickFillingsButton() {
         driver.findElement(sectionFillingsButton).click();
     }
