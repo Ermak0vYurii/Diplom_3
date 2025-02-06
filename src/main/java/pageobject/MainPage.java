@@ -22,6 +22,8 @@ public class MainPage {
     private final By sectionSaucesButton = By.xpath(".//span[text()='Соусы']");
     //кнопка выбора раздела конструктора Начинки
     private final By sectionFillingsButton = By.xpath(".//span[text()='Начинки']");
+    //список булок в разделе Булки
+    private final By bunsInConstructor = By.xpath(".//a[@href='/ingredient/61c0c5a71d1f82001bdaaa6d']/parent::ul");
 
     public MainPage(WebDriver driver) {
         this.driver = driver;
@@ -56,6 +58,11 @@ public class MainPage {
     @Step("Нажатие на раздел конструктора Булки")
     public void clickFillingsButton() {
         driver.findElement(sectionFillingsButton).click();
+    }
+
+    @Step("Виден ли список булок")
+    public boolean listBunsIsDisplayed() {
+        return driver.findElement(bunsInConstructor).isDisplayed();
     }
 
 }
