@@ -51,6 +51,5 @@ public class LogoutTest extends BaseTest {
         objPersonalAccountPage.clickExitButton();
         objLoginPage.waitOfVisibilityEnterButton();
         assertTrue(objLoginPage.enterButtonIsDisplayed());
-
     }
 }
