@@ -1,4 +1,5 @@
 import api.UserClient;
+import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.After;
@@ -29,7 +30,7 @@ public class LoginTest extends BaseTest {
         objRegisterPage = new RegisterPage(driver);
         objRecoverPasswordPage = new RecoverPasswordPage(driver);
         client = new UserClient();
-        user = new User("user-test@ya.ru", "password", "Ivan");
+        user = UserGenerator.getRandomUser();
         Response response = client.createUser(user);
         token = response.then().extract().path("accessToken");
     }
@@ -43,6 +44,7 @@ public class LoginTest extends BaseTest {
 
     @Test
     @DisplayName("Вход по кнопке \"Войти в аккаунт\" на главной странице")
+    @Description("Проверка авторизации пользователя")
     public void loginToLoginButtonTest() {
         objMainPage.clickLoginButton();
         objLoginPage.loginUser(user.getEmail(), user.getPassword());
@@ -52,6 +54,7 @@ public class LoginTest extends BaseTest {
 
     @Test
     @DisplayName("Вход через кнопку \"Личный кабинет\"")
+    @Description("Проверка авторизации пользователя")
     public void loginToPersonalAccountButtonTest() {
         objMainPage.clickPersonalAccountButton();
         objLoginPage.loginUser(user.getEmail(), user.getPassword());
@@ -61,6 +64,7 @@ public class LoginTest extends BaseTest {
 
     @Test
     @DisplayName("Вход через кнопку в форме регистрации")
+    @Description("Проверка авторизации пользователя")
     public void loginEnterButtonOnRegisterPageTest() {
         objMainPage.clickLoginButton();
         objLoginPage.clickRegisterButton();
@@ -72,6 +76,7 @@ public class LoginTest extends BaseTest {
 
     @Test
     @DisplayName("Вход через кнопку в форме восстановления пароля")
+    @Description("Проверка авторизации пользователя")
     public void loginButtonOnRecoveryPasswordPageTest() {
         objMainPage.clickLoginButton();
         objLoginPage.clickRecoverPasswordButton();

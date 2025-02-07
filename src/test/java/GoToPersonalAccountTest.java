@@ -1,4 +1,5 @@
 import api.UserClient;
+import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.After;
@@ -29,7 +30,7 @@ public class GoToPersonalAccountTest extends BaseTest {
         objRegisterPage = new RegisterPage(driver);
         objPersonalAccountPage = new PersonalAccountPage(driver);
         client = new UserClient();
-        user = new User("user-test@ya.ru", "password", "Ivan");
+        user = UserGenerator.getRandomUser();
         Response response = client.createUser(user);
         token = response.then().extract().path("accessToken");
     }
@@ -43,6 +44,7 @@ public class GoToPersonalAccountTest extends BaseTest {
 
     @Test
     @DisplayName("Нажатие на кнопку Личный кабинет, если пользователь авторизован")
+    @Description("Проверка перехода в Личный кабинет")
     public void GoToPersonalAccountWithAuthUserTest() {
         objMainPage.clickLoginButton();
         objLoginPage.loginUser(user.getEmail(), user.getPassword());
@@ -53,6 +55,7 @@ public class GoToPersonalAccountTest extends BaseTest {
 
     @Test
     @DisplayName("Нажатие на кнопку Личный кабинет, если пользователь не авторизован")
+    @Description("Проверка перехода в Личный кабинет")
     public void GoToPersonalAccountWithoutAuthUserTest() {
         objMainPage.clickPersonalAccountButton();
         objLoginPage.waitOfVisibilityEnterButton();

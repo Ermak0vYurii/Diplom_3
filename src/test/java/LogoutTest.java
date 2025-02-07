@@ -1,4 +1,5 @@
 import api.UserClient;
+import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.After;
@@ -29,7 +30,7 @@ public class LogoutTest extends BaseTest {
         objRegisterPage = new RegisterPage(driver);
         objPersonalAccountPage = new PersonalAccountPage(driver);
         client = new UserClient();
-        user = new User("user-test@ya.ru", "password", "Ivan");
+        user = UserGenerator.getRandomUser();
         Response response = client.createUser(user);
         token = response.then().extract().path("accessToken");
         objMainPage.clickLoginButton();
@@ -46,6 +47,7 @@ public class LogoutTest extends BaseTest {
 
     @Test
     @DisplayName("LogOut нажатием кнопки Выход в Личном кабинете")
+    @Description("Проверка выхода пользователя")
     public void logoutUserTest(){
         objPersonalAccountPage.waitOfVisibilityExitButton();
         objPersonalAccountPage.clickExitButton();

@@ -1,4 +1,5 @@
 import api.UserClient;
+import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.After;
@@ -29,7 +30,7 @@ public class GoToConstructorTest extends BaseTest {
         objRegisterPage = new RegisterPage(driver);
         objPersonalAccountPage = new PersonalAccountPage(driver);
         client = new UserClient();
-        user = new User("user-test@ya.ru", "password", "Ivan");
+        user = UserGenerator.getRandomUser();
         Response response = client.createUser(user);
         token = response.then().extract().path("accessToken");
         objMainPage.clickLoginButton();
@@ -45,7 +46,8 @@ public class GoToConstructorTest extends BaseTest {
     }
 
     @Test
-    @DisplayName("Переход из личного кабинета в конструктор")
+    @DisplayName("Нажатие в личном кабинете на конструктор")
+    @Description("Проверка перехода в конструктор")
     public void goPersonalAccountToConstructorTest() {
         objPersonalAccountPage.clickConstructorButton();
         assertEquals(URL,driver.getCurrentUrl());
@@ -53,6 +55,7 @@ public class GoToConstructorTest extends BaseTest {
 
     @Test
     @DisplayName("Нажатие в личном кабинете на логотип бургерной")
+    @Description("Проверка перехода на главную страницу")
     public void clickLogoBurgerTest() {
         objPersonalAccountPage.clickLogoBurger();
         assertEquals(URL,driver.getCurrentUrl());

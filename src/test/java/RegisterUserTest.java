@@ -1,4 +1,5 @@
 import api.UserClient;
+import io.qameta.allure.Description;
 import io.qameta.allure.junit4.DisplayName;
 import io.restassured.response.Response;
 import org.junit.After;
@@ -40,17 +41,19 @@ public class RegisterUserTest extends BaseTest {
 
     @Test
     @DisplayName("Успешная регистрация")
+    @Description("Проверка регистрации пользователя")
     public void successRegisterTest() {
-        user = new User("user-test@ya.ru", "password", "Ivan");
+        user = UserGenerator.getRandomUser();
         objRegisterPage.registerUser(user.getName(), user.getEmail(), user.getPassword());
         objLoginPage.waitOfVisibilityEnterButton();
-        assertTrue(objLoginPage.enterButtonIsDisplayed());
         Response response = client.loginUser(user);
         token = response.then().extract().path("accessToken");
+        assertTrue(objLoginPage.enterButtonIsDisplayed());
     }
 
     @Test
     @DisplayName("Проверка ошибки для некорректного пароля")
+    @Description("Проверка регистрации пользователя")
     public void registerWithIncorrectPasswordTest() {
         user = new User("user-test@ya.ru", "pass", "Ivan");
         objRegisterPage.registerUser(user.getName(), user.getEmail(), user.getPassword());
